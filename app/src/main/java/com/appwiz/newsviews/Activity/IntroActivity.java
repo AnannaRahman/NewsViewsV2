@@ -1,10 +1,18 @@
 package com.appwiz.newsviews.Activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 
+import com.appwiz.newsviews.Fragment.AppSplashFragment;
+import com.appwiz.newsviews.Fragment.FirstSplashFragment;
+import com.appwiz.newsviews.Fragment.SecondSplashFragment;
+import com.appwiz.newsviews.Fragment.ThirdSplashFragment;
+import com.appwiz.newsviews.R;
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
@@ -13,49 +21,56 @@ public class IntroActivity extends AppIntro {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Note here that we DO NOT use setContentView();
+        boolean isFirstRun = getIntent().getBooleanExtra("firstRun", false);
+        if (isFirstRun)
+            splashIntro();
+        else
+            splasher();
+    }
 
-        // Add your slide fragments here.
-        // AppIntro will automatically generate the dots indicator and buttons.
-/*        addSlide(firstFragment);
-        addSlide(secondFragment);
-        addSlide(thirdFragment); */
-
-
-        // Instead of fragments, you can also use our default slide
-        // Just set a title, description, background and image. AppIntro will do the rest.
-       // addSlide(AppIntroFragment.newInstance(title, description, image, backgroundColor));
-
-        // OPTIONAL METHODS
-        // Override bar/separator color.
-        setBarColor(Color.parseColor("#3F51B5"));
-        setSeparatorColor(Color.parseColor("#2196F3"));
-
-        // Hide Skip/Done button.
-        showSkipButton(true);
-        setProgressButtonEnabled(true);
-
-        // Turn vibration on and set intensity.
-        // NOTE: you will probably need to ask VIBRATE permission in Manifest.
+    private void splashIntro() {
+        addSlide(FirstSplashFragment.getInstnace());
+        addSlide(SecondSplashFragment.getInstnace());
+        addSlide(ThirdSplashFragment.getInstnace());
+        showSkipButton(false);
+        setSeparatorColor(ContextCompat.getColor(this, R.color.colorAccent));
+      /*setProgressButtonEnabled(true);
         setVibrate(true);
-        setVibrateIntensity(30);
+        setVibrateIntensity(30);*/
+    }
+
+    private void splasher() {
+        addSlide(AppSplashFragment.getInstnace());
+        showSkipButton(false);
+        showSeparator(false);
+        showPagerIndicator(false);
+        setDoneText("");
+        setSeparatorColor(ContextCompat.getColor(this, R.color.colorAccent));
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                finish();
+            }
+        }, 2000);
     }
 
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
-        // Do something when users tap on Skip button.
+
     }
 
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
-        // Do something when users tap on Done button.
+        finish();
+
     }
 
     @Override
     public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
         super.onSlideChanged(oldFragment, newFragment);
-        // Do something when the slide changes.
     }
 }
