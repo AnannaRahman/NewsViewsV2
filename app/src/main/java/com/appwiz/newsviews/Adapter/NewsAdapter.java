@@ -53,12 +53,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
-        //Picasso.get().load(newsList.getArticles().get(position).getUrlToImage()).placeholder(R.drawable.loading).into(holder.newsImage);
-
-
         RequestOptions options = new RequestOptions().centerCrop().placeholder(R.drawable.loading).error(R.drawable.loading)
                                     .diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.HIGH);
-        //Glide.with(activity).load(newsList.getArticles().get(position).getUrlToImage()).apply(options).into(holder.newsImage);
         Glide.with(activity).load(newsList.getArticles().get(position).getUrlToImage())
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .apply(options)
@@ -94,7 +90,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             author = itemView.findViewById(R.id.news_item_author);
             source = itemView.findViewById(R.id.news_item_source);
 
-            //TODO WEBVIEW NEEDS TO CONTROL
+            // WEBVIEW CONTROL
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -126,15 +122,4 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         }
     }
 
-   /* // Clean all elements of the recycler
-    public void clear() {
-        items.clear();
-        notifyDataSetChanged();
-    }
-
-    // Add a list of items -- change to type used
-    public void addAll(List<Tweet> list) {
-        items.addAll(list);
-        notifyDataSetChanged();
-    }*/
 }
