@@ -1,40 +1,29 @@
 package com.appwiz.newsviews.Activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
 
 
 import com.appwiz.newsviews.Adapter.NewsAdapter;
-import com.appwiz.newsviews.Fragment.AppSplashFragment;
 import com.appwiz.newsviews.R;
-import com.appwiz.newsviews.Utils.NetworkCall;
 import com.appwiz.newsviews.Utils.NetworkService;
 import com.appwiz.newsviews.model.HeadLine;
 
-import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -90,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         RecyclerView recyclerView = findViewById(R.id.recyclerView);
                         NewsAdapter adapter = new NewsAdapter(MainActivity.this, builder);
                         recyclerView.setAdapter(adapter);
-                        recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this,2));
+                        recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this,1));
                         adapter.setItem(headLine);
 
 

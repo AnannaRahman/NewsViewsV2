@@ -1,9 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="vertical"
+    android:background="@color/colorPrimary"
     tools:context=".Activity.AboutAppActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:layout_marginTop="20dp"
+            android:id="@+id/ivAboutUs"
+            android:src="@drawable/aboutusbanner"/>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
 
-</android.support.constraint.ConstraintLayout>
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="About App"
+            android:id="@+id/tvaboutApp"
+            android:layout_alignBottom="@id/ivAboutUs"
+            android:layout_below="@id/toolBar"
+            android:textColor="@android:color/white"
+            android:gravity="center|bottom"
+
+            android:textStyle="bold|italic"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/aboutAppDetails"
+            android:layout_below="@id/tvaboutApp"
+            android:textColor="@android:color/white"
+            android:gravity="center|bottom"
+            android:maxLines="12"
+            android:textStyle="italic"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            />
+
+    </RelativeLayout>
+
+
+</ScrollView>

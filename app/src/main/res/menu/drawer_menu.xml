@@ -2,31 +2,31 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <item
-            android:id="@+id/action_home"
-            android:icon="@drawable/ic_home"
-            android:title="Home"
-            android:orderInCategory="100"
-            app:showAsAction="always"/>
-        <item
-            android:id="@+id/action_about"
-            android:icon="@drawable/ic_about"
-            android:title="About"
-            android:orderInCategory="100"
-            app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_home"
+        android:icon="@drawable/ic_home"
+        android:orderInCategory="100"
+        android:title="Home"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_social_login"
+        android:icon="@drawable/ic_social_login"
+        android:orderInCategory="100"
+        android:title="Social Log In"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_about"
+        android:icon="@drawable/ic_about"
+        android:orderInCategory="100"
+        android:title="About"
+        app:showAsAction="always" />
 
-        <item
-            android:id="@+id/action_social_login"
-            android:icon="@drawable/ic_social_login"
-            android:title="Social Log In"
-            android:orderInCategory="100"
-            app:showAsAction="always"/>
 
     <item
         android:id="@+id/action_exit"
         android:icon="@drawable/ic_exit"
-        android:title="Exit"
         android:orderInCategory="100"
-        app:showAsAction="always"/>
+        android:title="Exit"
+        app:showAsAction="always" />
 
 </menu>

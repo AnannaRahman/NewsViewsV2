@@ -2,11 +2,9 @@ package com.appwiz.newsviews.Adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,10 +15,10 @@ import android.widget.TextView;
 
 import com.appwiz.newsviews.Activity.NewsDetailsActivity;
 import com.appwiz.newsviews.R;
+import com.appwiz.newsviews.Utils.Utils;
 import com.appwiz.newsviews.model.HeadLine;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
-import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
@@ -62,8 +60,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
 
         holder.title.setText(newsList.getArticles().get(position).getTitle());
+        holder.description.setText(newsList.getArticles().get(position).getDescription());
         holder.author.setText("Author: " + newsList.getArticles().get(position).getAuthor());
         holder.source.setText("Source: " + newsList.getArticles().get(position).getSource().getName());
+        holder.publishDate.setText( Utils.DateFormat(newsList.getArticles().get(position).getPublishedAt()));
+        holder.publishTime.setText("\u2022" +Utils.DateToTimeFormat(newsList.getArticles().get(position).getPublishedAt()) );
     }
 
     @Override
@@ -82,13 +83,19 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         private final TextView title;
         private final TextView author;
         private final TextView source;
+        private final TextView publishDate;
+        private final TextView description;
+        private final TextView publishTime;
 
         private NewsViewHolder(View itemView) {
             super(itemView);
-            newsImage = itemView.findViewById(R.id.news_item_image);
-            title = itemView.findViewById(R.id.news_item_title);
-            author = itemView.findViewById(R.id.news_item_author);
-            source = itemView.findViewById(R.id.news_item_source);
+            newsImage = itemView.findViewById(R.id.ivNewsImage);
+            title = itemView.findViewById(R.id.txtNewsTitle);
+            description = itemView.findViewById(R.id.txtNewsDescription);
+            author = itemView.findViewById(R.id.txtNewsAuthor);
+            source = itemView.findViewById(R.id.txtNewsSource);
+            publishTime = itemView.findViewById(R.id.txtNewsPublishTime);
+            publishDate = itemView.findViewById(R.id.txtNewsPublishDate);
 
             // WEBVIEW CONTROL
             itemView.setOnClickListener(new View.OnClickListener() {

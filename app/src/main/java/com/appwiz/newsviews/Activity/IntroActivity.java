@@ -1,7 +1,5 @@
 package com.appwiz.newsviews.Activity;
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -14,7 +12,6 @@ import com.appwiz.newsviews.Fragment.SecondSplashFragment;
 import com.appwiz.newsviews.Fragment.ThirdSplashFragment;
 import com.appwiz.newsviews.R;
 import com.github.paolorotolo.appintro.AppIntro;
-import com.github.paolorotolo.appintro.AppIntroFragment;
 
 public class IntroActivity extends AppIntro {
     @Override

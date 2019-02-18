@@ -42,7 +42,7 @@ public class NewsDetailsActivity extends AppCompatActivity {
 
     private void showProgressView() {
         dialog = new ProgressDialog(NewsDetailsActivity.this);
-        dialog.setMessage("please wait...");
+        dialog.setMessage("Loading...");
         dialog.show();
 
     }
