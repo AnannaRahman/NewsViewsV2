@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -41,7 +40,7 @@ public class SocialLogInActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
     private GraphRequest request;
     private ImageView imagePP;
-    private TextInputEditText tvName, tvEmail, tvGender;
+    private TextView tvName, tvEmail, tvGender;
     private AccessTokenTracker accessTokenTracker;
     private RelativeLayout rlProfileDetails;
 
@@ -153,7 +152,7 @@ public class SocialLogInActivity extends AppCompatActivity {
                     Log.v("Success", currentAccessToken.toString());
                 } else {
                     //showFragment(SPLASH, false);
-                    //rlprofileDetails.setVisibility(View.INVISIBLE);
+                    rlprofileDetails.setVisibility(View.INVISIBLE);
                     Log.v("Logout", "No Token");
 
                     tvName.setText("");
