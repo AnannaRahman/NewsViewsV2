@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.appwiz.newsviews"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -34,7 +34,8 @@ dependencies {
     implementation 'com.rom4ek:arcnavigationview:1.0.3'
     //TextView
     implementation 'com.github.florent37:materialtextfield:1.0.7'
-
+// translucent bar
+    implementation 'com.kelin.translucentbar:library:0.8.0'
     //retrofit
     /*implementation "com.squareup.retrofit2:retrofit:2.5.0"
     implementation "com.squareup.retrofit2:converter-gson:2.5.0"

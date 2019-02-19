@@ -13,4 +13,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="aboutAppDetails">This application will be consuming data from different API endpoints.“NewsViews” will basically fetch the data from different sources of the Web and show it to the end user.</string>
     <string name="name">Name :</string>
+    <string name="email">Email :</string>
+    <string name="search">Search</string>
 </resources>

@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/imagePP"
-            android:layout_marginStart="100dp"
+            android:layout_marginLeft="80dp"
             android:paddingTop="20dp"
             android:text="@string/name"
             android:textColor="@color/colorPrimary"
@@ -59,8 +59,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/txtName"
-            android:layout_marginLeft="100dp"
-            android:text="Email   : "
+            android:layout_marginLeft="80dp"
+            android:text="@string/email"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold" />
 
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/txtName"
             android:layout_toRightOf="@id/txtEmail"
-            android:hint="Email : "
+            android:hint="Email "
             android:paddingLeft="4dp"
             android:textColor="@color/colorPrimary" />
 

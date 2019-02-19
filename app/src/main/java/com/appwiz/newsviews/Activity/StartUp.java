@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.appwiz.newsviews.R;
+
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class StartUp extends Application {
@@ -14,6 +16,7 @@ public class StartUp extends Application {
 
         checkSplash();
     }
+
     private void checkSplash() {
         SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         boolean isfirstRun = getPrefs.getBoolean("firstRun", true);

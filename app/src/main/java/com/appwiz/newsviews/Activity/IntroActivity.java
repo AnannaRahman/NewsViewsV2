@@ -1,10 +1,14 @@
 package com.appwiz.newsviews.Activity;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.appwiz.newsviews.Fragment.AppSplashFragment;
 import com.appwiz.newsviews.Fragment.FirstSplashFragment;
@@ -17,6 +21,8 @@ public class IntroActivity extends AppIntro {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         boolean isFirstRun = getIntent().getBooleanExtra("firstRun", false);
         if (isFirstRun)

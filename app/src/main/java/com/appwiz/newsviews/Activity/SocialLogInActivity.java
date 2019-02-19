@@ -152,7 +152,7 @@ public class SocialLogInActivity extends AppCompatActivity {
                     Log.v("Success", currentAccessToken.toString());
                 } else {
                     //showFragment(SPLASH, false);
-                    rlprofileDetails.setVisibility(View.INVISIBLE);
+                    rlprofileDetails.setVisibility(View.VISIBLE);
                     Log.v("Logout", "No Token");
 
                     tvName.setText("");
