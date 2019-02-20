@@ -78,15 +78,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
 
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 
-
-
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        getHeadLines();
 
 
         // SwipeRefreshLayout
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
-        mSwipeRefreshLayout.setOnRefreshListener(this);
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+
+      /*  mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
                 android.R.color.holo_green_dark,
                 android.R.color.holo_orange_dark,
                 android.R.color.holo_blue_dark);
@@ -100,9 +100,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     mSwipeRefreshLayout.setRefreshing(false);
                 }
                 // TODO Fetching data from server
-                getHeadLines();
+
             }
-        });
+        });*/
 
 
 
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void getHeadLines() {
-
+        mSwipeRefreshLayout.setRefreshing(false);
         NetworkService networkService = new NetworkService();
         networkService
                 .GetTopHeadlines("ca", "a53f0969300947abaa25b17bf447cdbe")
@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     @Override
                     public void onError(Throwable e) {
                         e.printStackTrace();
+                        mSwipeRefreshLayout.setRefreshing(false);
                     }
 
                     @Override
@@ -388,7 +389,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onRefresh() {
+        mSwipeRefreshLayout.setRefreshing(true);
         getHeadLines();
-        mSwipeRefreshLayout.setRefreshing(false);
+
     }
+
+
 }

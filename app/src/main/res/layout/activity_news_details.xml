@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:paddingTop="24dp"
     tools:context=".Activity.NewsDetailsActivity">
 
 
 
     <WebView
-        android:layout_marginTop="20dp"
+
         android:id="@+id/wbNewsDetails"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
