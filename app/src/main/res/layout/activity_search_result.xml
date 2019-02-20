@@ -4,12 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
     tools:context=".Activity.SearchResultActivity">
 <TextView
+    android:layout_margin="6dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/tvSearchResult"
     android:maxLines="100"
     android:text="Result"
+    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+    android:textColor="@android:color/white"
     android:gravity="center|center_horizontal|center_vertical"/>
 </android.support.constraint.ConstraintLayout>
