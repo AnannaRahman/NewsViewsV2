@@ -18,6 +18,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -53,12 +54,13 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener , SwipeRefreshLayout.OnRefreshListener{
 
     private DrawerLayout drawer;
     private AlertDialog.Builder builder;
     private MenuItem mSearchItem;
     Toolbar mToolbar;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +78,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        getHeadLines();
+
+
+
+
+
+        // SwipeRefreshLayout
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+
+        mSwipeRefreshLayout.post(new Runnable() {
+
+            @Override
+            public void run() {
+
+                if(mSwipeRefreshLayout != null) {
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
+                // TODO Fetching data from server
+                getHeadLines();
+            }
+        });
+
+
+
         //getNumberString();
     }
 
@@ -141,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     @Override
                     public void onNext(ResponseBody number) {
                         //Response msg2 = number.raw();
-                        String data = null;
+                        String data= null;
                         try {
                             data = number.string();
                         } catch (IOException e) {
@@ -149,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         }
 
                         //String data = number.body() != null ? number.body().toString() : null;
-                        startActivity(new Intent(getApplicationContext(), SearchResultActivity.class).putExtra("NumberResult", data));
+                        startActivity(new Intent(getApplicationContext(), SearchResultActivity.class).putExtra("NumberResult",data));
 
                     }
 
@@ -355,5 +384,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onRefresh() {
+        getHeadLines();
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 }

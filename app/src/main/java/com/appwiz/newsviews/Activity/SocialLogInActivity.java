@@ -74,6 +74,12 @@ public class SocialLogInActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("Social Log In");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
+                }
+            });
         }
 
         mCallbackManager = CallbackManager.Factory.create();
