@@ -25,6 +25,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,10 +45,13 @@ import com.appwiz.newsviews.R;
 import com.appwiz.newsviews.Utils.NetworkService;
 import com.appwiz.newsviews.model.HeadLine;
 
+import java.io.IOException;
+
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -73,14 +77,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         getHeadLines();
-
+        //getNumberString();
     }
 
     private void getHeadLines() {
 
         NetworkService networkService = new NetworkService();
         networkService
-                .GetTopHeadlines("us", "a53f0969300947abaa25b17bf447cdbe")
+                .GetTopHeadlines("ca", "a53f0969300947abaa25b17bf447cdbe")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<HeadLine>() {
@@ -119,6 +123,48 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 });
     }
 
+    private void getNumberString(String query) {
+
+        NetworkService networkService = new NetworkService();
+        networkService.NetworkServiceNumber();
+
+        networkService.NetworkServiceNumber()
+                .GetTrivialString(query)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResponseBody>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ResponseBody number) {
+                        //Response msg2 = number.raw();
+                        String data = null;
+                        try {
+                            data = number.string();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        //String data = number.body() != null ? number.body().toString() : null;
+                        startActivity(new Intent(getApplicationContext(), SearchResultActivity.class).putExtra("NumberResult", data));
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -138,10 +184,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getMenuInflater().inflate(R.menu.activity_main_drawer_menu, menu);
         mSearchItem = menu.findItem(R.id.nav_search);
         SearchView sv = (SearchView) mSearchItem.getActionView();
+        sv.setInputType(InputType.TYPE_CLASS_NUMBER);
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(MainActivity.this, query, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, query, Toast.LENGTH_SHORT).show();
+                getNumberString(query);
                 return true;
             }
 
