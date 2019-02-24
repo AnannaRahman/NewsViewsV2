@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoAction"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.MainActivity">
+        <activity android:name=".Activity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,11 +46,16 @@
         <activity
             android:name=".Activity.IntroActivity"
             android:label="App Splash"
+            android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoAction" />
-        <activity android:name=".Activity.NewsDetailsActivity" />
-        <activity android:name=".Activity.AboutAppActivity" />
-        <activity android:name=".Activity.SocialLogInActivity" />
-        <activity android:name=".Activity.SearchResultActivity"></activity>
+        <activity android:name=".Activity.NewsDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.AboutAppActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.SocialLogInActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.SearchResultActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
